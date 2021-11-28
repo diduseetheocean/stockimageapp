@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">PixabayApp</string>
+    <string name="tag_prefix">#</string>
+    <string name="search_screen">search_screen</string>
+    <string name="image_details_screen">image_details_screen</string>
+    <string name="dialog_positive_option">OK</string>
+    <string name="dialog_negative_option">Abort</string>
+    <string name="dialog_title_open_image_details">Show details</string>
+    <string name="empty_view_message">Try to search ...</string>
+    <string name="error_message">Something went wrong</string>
+    <string name="network_error_message">Your network is unavailable,\n check your data or wifi and try again</string>
+</resources>
