@@ -1,6 +1,8 @@
-package io.github.diduseetheocean.pixabayapp.data.model
+package io.github.diduseetheocean.pixabayapp.data.model.preview
 
-object PreviewDataImageDetailsView {
+import io.github.diduseetheocean.pixabayapp.data.model.ImageModel
+
+object PreviewDataImageDetailsModel {
     val image = ImageModel(
         userName = "Chris",
         userImageURL = "",

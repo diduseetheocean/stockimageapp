@@ -22,14 +22,14 @@ import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import io.github.diduseetheocean.pixabayapp.data.model.ImageModel
-import io.github.diduseetheocean.pixabayapp.data.model.PreviewDataImageDetailsView
+import io.github.diduseetheocean.pixabayapp.data.model.preview.PreviewDataImageDetailsModel
 import io.github.diduseetheocean.pixabayapp.ui.components.misc.ImageDetails
 
 @ExperimentalCoilApi
 @Preview
 @Composable
 fun PreviewImageDetails() {
-    ImageDetailsView(PreviewDataImageDetailsView.image)
+    ImageDetailsView(PreviewDataImageDetailsModel.image)
 }
 
 @ExperimentalCoilApi
