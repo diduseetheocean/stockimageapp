@@ -9,6 +9,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import io.github.diduseetheocean.stockimageapp.data.model.ApiType
 import io.github.diduseetheocean.stockimageapp.data.model.SearchState
 import io.github.diduseetheocean.stockimageapp.data.model.SearchState.*
 import io.github.diduseetheocean.stockimageapp.ui.components.dialog.ConfirmationDialog
@@ -21,6 +22,7 @@ import io.github.diduseetheocean.stockimageapp.ui.components.view.ImageListView
 fun SearchViewContent(
     searchText: String = "",
     onSearchChange: (String) -> Unit = {},
+    onApiChange: (ApiType) -> Unit = {},
     onSearchClicked: () -> Unit = {},
     searchState: SearchState = Empty,
     onImageClicked: (Long) -> Unit = {},
@@ -47,6 +49,9 @@ fun SearchViewContent(
             onSearchChange = onSearchChange,
             onSearchClicked = onSearchClicked,
             isLoading = searchState is Loading,
+        )
+        DropdownItem(
+            onApiChange = onApiChange
         )
     }
 

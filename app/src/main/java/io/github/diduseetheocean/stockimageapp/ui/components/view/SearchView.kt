@@ -10,11 +10,13 @@ import io.github.diduseetheocean.stockimageapp.ui.components.misc.SearchViewCont
 fun SearchView(viewModel: SearchImagesViewModel, onNavigateClicked: (Long) -> Unit = { }) {
     val viewState by viewModel.searchViewState.collectAsState()
     val query by viewModel.searchQueryState.collectAsState()
+    val apiType by viewModel.searchApiType.collectAsState()
 
     SearchViewContent(
         onImageClicked = onNavigateClicked,
         searchText = query,
         searchState = viewState,
+        onApiChange = { viewModel.onApicChange(it) },
         onSearchChange = { viewModel.onSearchChange(it) },
         onSearchClicked = { viewModel.onSearchClicked() }
     )
