@@ -23,7 +23,7 @@ fun ImageListView(
 ) {
     val currentConfig = LocalConfiguration.current
     LazyVerticalGrid(
-        contentPadding = PaddingValues(top = TextFieldDefaults.MinHeight + 28.dp),
+        contentPadding = PaddingValues(top = TextFieldDefaults.MinHeight + 96.dp),
         modifier = Modifier,
         cells = GridCells.Fixed(if (currentConfig.isPortrait()) 2 else 4),
         content = {

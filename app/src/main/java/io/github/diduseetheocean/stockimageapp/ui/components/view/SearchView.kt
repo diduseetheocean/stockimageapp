@@ -15,6 +15,7 @@ fun SearchView(viewModel: SearchImagesViewModel, onNavigateClicked: (Long) -> Un
         onImageClicked = onNavigateClicked,
         searchText = query,
         searchState = viewState,
+        onApiChange = { viewModel.onApicChange(it) },
         onSearchChange = { viewModel.onSearchChange(it) },
         onSearchClicked = { viewModel.onSearchClicked() }
     )
