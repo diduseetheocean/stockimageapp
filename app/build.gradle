@@ -9,7 +9,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "io.github.diduseetheocean.pixabayapp"
+        applicationId "io.github.diduseetheocean.stockimageapp"
         minSdk 23
         targetSdk 31
         versionCode 1
@@ -19,7 +19,8 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
-        buildConfigField("String", "api_key", api_key)
+        buildConfigField("String", "api_key_pixabay", api_key_pixabay)
+        buildConfigField("String", "api_key_pexels", api_key_pexels)
     }
 
     buildTypes {

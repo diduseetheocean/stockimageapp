@@ -1,15 +1,19 @@
-
-# PixabayApp
+# StockImageApp
 
 <p align="left">
 <img src="searchScreen.jpg" width="40%"/>
 <img src="detailsScreen.jpg" width="40%"/>
 </p>
 
-## Add a pixabay api key:
-1. Add the apiKey to `api_key="<apiKey>"` inside the `gradle.properties`
+## Add the api-key's for each image platform:
+
+Add the apiKey for each image platform to the corresponding property inside the `gradle.properties`
+
+1. Pixabay api-key to `api_key_pixabay="<api-key-pixabay>"`
+1. Pexels api-key to `api_key_pexels="<api-key-pexels>"`
 
 ## Build with:
+
 - [Coil](https://github.com/coil-kt)
 - [Room](https://developer.android.com/jetpack/androidx/releases/room)
 - [Hilt](http://google.github.io/hilt/)
@@ -21,6 +25,7 @@
 - [Navigation component](https://developer.android.com/guide/navigation)
 
 ## Architecture:
+
 - MVVM Pattern
 - Repository Pattern
 - Finite state machine pattern

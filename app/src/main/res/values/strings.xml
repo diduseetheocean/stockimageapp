@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PixabayApp</string>
+    <string name="app_name">StockImageApp</string>
     <string name="tag_prefix">#</string>
     <string name="search_screen">search_screen</string>
     <string name="image_details_screen">image_details_screen</string>
