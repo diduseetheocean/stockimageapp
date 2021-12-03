@@ -1,5 +1,9 @@
 # StockImageApp
 
+This app searches for images within the selected image-api and then displays them.
+
+## Screenshots
+
 <p align="left">
 <img src="searchScreen.jpg" width="40%"/>
 <img src="detailsScreen.jpg" width="40%"/>
@@ -7,10 +11,10 @@
 
 ## Add the api-key's for each image platform:
 
-Add the apiKey for each image platform to the corresponding property inside the `gradle.properties`
+Add the apiKey for each image platform to the corresponding property inside the `gradle.properties`.
 
-1. Pixabay api-key to `api_key_pixabay="<api-key-pixabay>"`
-1. Pexels api-key to `api_key_pexels="<api-key-pexels>"`
+1. At the Pixabay api-key to `api_key_pixabay="<api-key-pixabay>"`
+1. At the Pexels api-key to `api_key_pexels="<api-key-pexels>"`
 
 ## Build with:
 
