@@ -15,6 +15,7 @@ Add the apiKey for each image platform to the corresponding property inside the 
 
 1. At the Pixabay api-key to `api_key_pixabay="<api-key-pixabay>"`
 1. At the Pexels api-key to `api_key_pexels="<api-key-pexels>"`
+1. At the Flickr api-key to `api_key_flickr="<api-key-flickr>"`
 
 ## Build with:
 

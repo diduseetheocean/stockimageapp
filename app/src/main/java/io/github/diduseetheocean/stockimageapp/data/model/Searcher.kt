@@ -1,7 +1,7 @@
 package io.github.diduseetheocean.stockimageapp.data.model
 
-import io.github.diduseetheocean.stockimageapp.data.model.ApiType.PEXELS
-import io.github.diduseetheocean.stockimageapp.data.model.ApiType.PIXABAY
+import io.github.diduseetheocean.stockimageapp.data.model.ApiType.*
+import io.github.diduseetheocean.stockimageapp.data.repository.ImagesSearchFlickrRepositoryInterface
 import io.github.diduseetheocean.stockimageapp.data.repository.ImagesSearchPexelsRepositoryInterface
 import io.github.diduseetheocean.stockimageapp.data.repository.ImagesSearchPixabayRepositoryInterface
 import kotlinx.coroutines.flow.Flow
@@ -13,11 +13,13 @@ import javax.inject.Inject
 class Searcher @Inject constructor(
     private val imagesPixabayRepository: ImagesSearchPixabayRepositoryInterface,
     private val imagesPexelsRepository: ImagesSearchPexelsRepositoryInterface,
+    private val imagesFlickrRepository: ImagesSearchFlickrRepositoryInterface,
 ) {
     operator fun invoke(searchQuery: String, apiType: ApiType): Flow<SearchState> {
         return when (apiType) {
             PIXABAY -> imagesPixabayRepository.search(searchQuery).process()
             PEXELS -> imagesPexelsRepository.search(searchQuery).process()
+            FLICKR -> imagesFlickrRepository.search(searchQuery).process()
         }
     }
 }
@@ -37,5 +39,6 @@ sealed class SearchState {
 
 enum class ApiType {
     PIXABAY,
-    PEXELS
+    PEXELS,
+    FLICKR
 }

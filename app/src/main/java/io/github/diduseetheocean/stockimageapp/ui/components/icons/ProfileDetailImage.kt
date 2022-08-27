@@ -40,6 +40,7 @@ fun ProfileDetailImage(url: String = "", text: String) {
             modifier = Modifier.wrapContentSize(),
             text = text,
             overflow = TextOverflow.Ellipsis,
+            maxLines = 2,
             style = MaterialTheme.typography.caption.copy(color = Gray),
         )
     }

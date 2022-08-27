@@ -1,6 +1,7 @@
 package io.github.diduseetheocean.stockimageapp.data.model
 
 import io.github.diduseetheocean.stockimageapp.data.model.ApiType.PIXABAY
+import io.github.diduseetheocean.stockimageapp.data.repository.ImagesSearchFlickrRepositoryInterface
 import io.github.diduseetheocean.stockimageapp.data.repository.ImagesSearchPexelsRepositoryInterface
 import io.github.diduseetheocean.stockimageapp.data.repository.ImagesSearchPixabayRepositoryInterface
 import io.mockk.mockk
@@ -16,9 +17,10 @@ class SearcherTest {
         val hit = mockk<ImageModel>()
         val repositoryPixabay = mockPixabayRepository(flowOf(listOf(hit, hit, hit)))
         val repositoryPexels = mockPexelsRepository(flowOf(listOf(hit, hit, hit)))
+        val repositoryFlickr = mockFlickrRepository(flowOf(listOf(hit, hit, hit)))
 
         val result =
-            Searcher(repositoryPixabay, repositoryPexels).invoke("flowers", PIXABAY).first()
+            Searcher(repositoryPixabay, repositoryPexels, repositoryFlickr).invoke("flowers", PIXABAY).first()
 
         assert((result is SearchState.Loading))
     }
@@ -31,8 +33,11 @@ class SearcherTest {
         val repositoryPexels = mockPexelsRepository(flow {
             emit(listOf(imageModelDummy, imageModelDummy, imageModelDummy))
         })
+        val repositoryFlickr = mockFlickrRepository(flow {
+            emit(listOf(imageModelDummy, imageModelDummy, imageModelDummy))
+        })
 
-        val result = Searcher(repositoryPixabay, repositoryPexels).invoke("flowers", PIXABAY).last()
+        val result = Searcher(repositoryPixabay, repositoryPexels, repositoryFlickr).invoke("flowers", PIXABAY).last()
 
         assert((result is SearchState.Success) && result.images.size == 3)
     }
@@ -45,9 +50,12 @@ class SearcherTest {
         val repositoryPexels = mockPexelsRepository(flow {
             emit(listOf(imageModelDummy, imageModelDummy, imageModelDummy))
         })
+        val repositoryFlickr = mockFlickrRepository(flow {
+            emit(listOf(imageModelDummy, imageModelDummy, imageModelDummy))
+        })
 
         val result =
-            Searcher(repositoryPixabay, repositoryPexels).invoke("flowers", PIXABAY).toList()
+            Searcher(repositoryPixabay, repositoryPexels, repositoryFlickr).invoke("flowers", PIXABAY).toList()
         assert(result.first() is SearchState.Loading)
         assert(result.drop(1).first() is SearchState.Success)
         assert(result.count() == 2)
@@ -57,8 +65,9 @@ class SearcherTest {
     fun `search with empty results Should return SearchState Empty`() = runBlocking {
         val repositoryPixabay = mockPixabayRepository(flowOf(emptyList()))
         val repositoryPexels = mockPexelsRepository(flowOf(emptyList()))
+        val repositoryFlickr = mockFlickrRepository(flowOf(emptyList()))
 
-        val result = Searcher(repositoryPixabay, repositoryPexels).invoke("flowers", PIXABAY).last()
+        val result = Searcher(repositoryPixabay, repositoryPexels, repositoryFlickr).invoke("flowers", PIXABAY).last()
 
         assert((result is SearchState.Empty))
     }
@@ -71,8 +80,11 @@ class SearcherTest {
         val repositoryPexels = mockPexelsRepository(flow {
             throw UnknownHostException()
         })
+        val repositoryFlickr = mockFlickrRepository(flow {
+            throw UnknownHostException()
+        })
 
-        val result = Searcher(repositoryPixabay, repositoryPexels).invoke("flowers", PIXABAY).last()
+        val result = Searcher(repositoryPixabay, repositoryPexels, repositoryFlickr).invoke("flowers", PIXABAY).last()
 
         assert((result is SearchState.Error) && result.throwable is UnknownHostException)
     }
@@ -95,6 +107,11 @@ class SearcherTest {
 
     private fun mockPexelsRepository(flowReturn: Flow<List<ImageModel>>) =
         object : ImagesSearchPexelsRepositoryInterface {
+            override fun search(query: String): Flow<List<ImageModel>> = flowReturn
+        }
+
+    private fun mockFlickrRepository(flowReturn: Flow<List<ImageModel>>) =
+        object : ImagesSearchFlickrRepositoryInterface {
             override fun search(query: String): Flow<List<ImageModel>> = flowReturn
         }
 }
